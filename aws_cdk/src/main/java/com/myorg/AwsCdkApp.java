@@ -7,7 +7,10 @@ public class AwsCdkApp {
     public static void main(final String[] args) {
         App app = new App();
 
-        new AwsVpcStack(app, "Vpc");
+        AwsVpcStack awsVpcStack = new AwsVpcStack(app, "Vpc");
+
+        AwsClusterStack awsClusterStack = new AwsClusterStack(app, "Cluster", awsVpcStack.getVpc());
+        awsClusterStack.addDependency(awsVpcStack);
 
         app.synth();
     }
