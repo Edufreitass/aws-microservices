@@ -9,6 +9,7 @@ import software.amazon.awscdk.services.ecs.ContainerImage;
 import software.amazon.awscdk.services.ecs.LogDriver;
 import software.amazon.awscdk.services.ecs.patterns.ApplicationLoadBalancedFargateService;
 import software.amazon.awscdk.services.ecs.patterns.ApplicationLoadBalancedTaskImageOptions;
+import software.amazon.awscdk.services.elasticloadbalancingv2.HealthCheck;
 import software.amazon.awscdk.services.logs.LogGroup;
 import software.constructs.Construct;
 
@@ -45,5 +46,11 @@ public class AwsService01Stack extends Stack {
                         )
                         .publicLoadBalancer(true)
                         .build();
+
+        service01.getTargetGroup().configureHealthCheck(HealthCheck.builder()
+                .path("/actuator/health")
+                .port("8080")
+                .healthyHttpCodes("200")
+                .build());
     }
 }
