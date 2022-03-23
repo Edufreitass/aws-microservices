@@ -39,7 +39,7 @@ public class AwsRdsStack extends Stack {
                 .allocatedStorage(10)
                 .securityGroups(Collections.singletonList(iSecurityGroup))
                 .vpcSubnets(SubnetSelection.builder()
-                        .subnets(vpc.getPrivateSubnets())
+                        .subnets(vpc.getPublicSubnets())
                         .build())
                 .build();
 
