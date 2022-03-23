@@ -51,7 +51,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	compileOnly group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
+	runtimeOnly group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.0'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
