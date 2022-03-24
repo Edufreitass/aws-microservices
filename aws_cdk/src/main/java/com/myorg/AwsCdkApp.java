@@ -15,6 +15,8 @@ public class AwsCdkApp {
         AwsRdsStack awsRdsStack = new AwsRdsStack(app, "Rds", awsVpcStack.getVpc());
         awsRdsStack.addDependency(awsVpcStack);
 
+        AwsSnsStack awsSnsStack = new AwsSnsStack(app, "Sns");
+
         AwsService01Stack awsService01Stack = new AwsService01Stack(app, "Service01", awsClusterStack.getCluster());
         awsService01Stack.addDependency(awsClusterStack);
         awsService01Stack.addDependency(awsRdsStack);
