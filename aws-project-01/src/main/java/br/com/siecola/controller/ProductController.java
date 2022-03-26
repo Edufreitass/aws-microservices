@@ -1,7 +1,9 @@
 package br.com.siecola.controller;
 
+import br.com.siecola.enums.EventType;
 import br.com.siecola.model.Product;
 import br.com.siecola.repository.ProductRepository;
+import br.com.siecola.service.ProductPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,12 @@ import java.util.Optional;
 public class ProductController {
 
     private final ProductRepository productRepository;
+    private final ProductPublisher productPublisher;
 
     @Autowired
-    public ProductController(ProductRepository productRepository) {
+    public ProductController(ProductRepository productRepository, ProductPublisher productPublisher) {
         this.productRepository = productRepository;
+        this.productPublisher = productPublisher;
     }
 
     @GetMapping
@@ -38,6 +42,9 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Product> saveProduct(@RequestBody Product product) {
         Product productCreated = productRepository.save(product);
+
+        productPublisher.publisherProductEvent(productCreated, EventType.PRODUCT_CREATED, "matilde");
+
         return new ResponseEntity<>(productCreated, HttpStatus.CREATED);
     }
 
@@ -47,6 +54,8 @@ public class ProductController {
             product.setId(id);
 
             Product productUpdated = productRepository.save(product);
+
+            productPublisher.publisherProductEvent(productUpdated, EventType.PRODUCT_UPDATED, "doralice");
 
             return new ResponseEntity<>(productUpdated, HttpStatus.OK);
         } else {
@@ -61,6 +70,8 @@ public class ProductController {
             Product product = optionalProduct.get();
 
             productRepository.delete(product);
+
+            productPublisher.publisherProductEvent(product, EventType.PRODUCT_DELETED, "hannah");
 
             return new ResponseEntity<>(product, HttpStatus.OK);
         } else {
