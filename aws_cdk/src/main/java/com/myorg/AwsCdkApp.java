@@ -17,9 +17,15 @@ public class AwsCdkApp {
 
         AwsSnsStack awsSnsStack = new AwsSnsStack(app, "Sns");
 
-        AwsService01Stack awsService01Stack = new AwsService01Stack(app, "Service01", awsClusterStack.getCluster());
+        AwsService01Stack awsService01Stack = new AwsService01Stack(
+                app,
+                "Service01",
+                awsClusterStack.getCluster(),
+                awsSnsStack.getProductEventsTopic()
+        );
         awsService01Stack.addDependency(awsClusterStack);
         awsService01Stack.addDependency(awsRdsStack);
+        awsService01Stack.addDependency(awsSnsStack);
 
         app.synth();
     }
