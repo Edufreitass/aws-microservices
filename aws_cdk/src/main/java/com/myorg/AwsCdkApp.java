@@ -27,6 +27,12 @@ public class AwsCdkApp {
         awsService01Stack.addDependency(awsRdsStack);
         awsService01Stack.addDependency(awsSnsStack);
 
+        AwsService02Stack awsService02Stack = new AwsService02Stack(
+                app,
+                "Service02",
+                awsClusterStack.getCluster()
+        );
+
         app.synth();
     }
 }
