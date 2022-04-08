@@ -30,8 +30,10 @@ public class AwsCdkApp {
         AwsService02Stack awsService02Stack = new AwsService02Stack(
                 app,
                 "Service02",
-                awsClusterStack.getCluster()
+                awsClusterStack.getCluster(),
+                awsSnsStack.getProductEventsTopic()
         );
+        awsService02Stack.addDependency(awsSnsStack);
 
         app.synth();
     }
