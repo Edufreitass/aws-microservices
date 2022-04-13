@@ -50,6 +50,9 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.springframework:spring-jms:5.2.9.RELEASE'
+	compileOnly 'com.amazonaws:aws-java-sdk-sqs:1.11.887'
+	compileOnly 'com.amazonaws:amazon-sqs-java-messaging-lib:1.0.8'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
