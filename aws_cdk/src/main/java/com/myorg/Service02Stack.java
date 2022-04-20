@@ -19,13 +19,13 @@ import software.constructs.Construct;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AwsService02Stack extends Stack {
+public class Service02Stack extends Stack {
 
-    public AwsService02Stack(final Construct scope, final String id, Cluster cluster, SnsTopic productEventsTopic) {
+    public Service02Stack(final Construct scope, final String id, Cluster cluster, SnsTopic productEventsTopic) {
         this(scope, id, null, cluster, productEventsTopic);
     }
 
-    public AwsService02Stack(final Construct scope, final String id, final StackProps props, Cluster cluster, SnsTopic productEventsTopic) {
+    public Service02Stack(final Construct scope, final String id, final StackProps props, Cluster cluster, SnsTopic productEventsTopic) {
         super(scope, id, props);
 
         Queue productEventsDlq = Queue.Builder.create(this, "ProductEventsDlq")

@@ -5,15 +5,15 @@ import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.services.ec2.Vpc;
 import software.constructs.Construct;
 
-public class AwsVpcStack extends Stack {
+public class VpcStack extends Stack {
 
     private final Vpc vpc;
 
-    public AwsVpcStack(final Construct scope, final String id) {
+    public VpcStack(final Construct scope, final String id) {
         this(scope, id, null);
     }
 
-    public AwsVpcStack(final Construct scope, final String id, final StackProps props) {
+    public VpcStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
 
         vpc = Vpc.Builder.create(this, "Vpc01")

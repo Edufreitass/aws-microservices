@@ -7,33 +7,33 @@ public class AwsCdkApp {
     public static void main(final String[] args) {
         App app = new App();
 
-        AwsVpcStack awsVpcStack = new AwsVpcStack(app, "Vpc");
+        VpcStack vpcStack = new VpcStack(app, "Vpc");
 
-        AwsClusterStack awsClusterStack = new AwsClusterStack(app, "Cluster", awsVpcStack.getVpc());
-        awsClusterStack.addDependency(awsVpcStack);
+        ClusterStack clusterStack = new ClusterStack(app, "Cluster", vpcStack.getVpc());
+        clusterStack.addDependency(vpcStack);
 
-        AwsRdsStack awsRdsStack = new AwsRdsStack(app, "Rds", awsVpcStack.getVpc());
-        awsRdsStack.addDependency(awsVpcStack);
+        RdsStack rdsStack = new RdsStack(app, "Rds", vpcStack.getVpc());
+        rdsStack.addDependency(vpcStack);
 
-        AwsSnsStack awsSnsStack = new AwsSnsStack(app, "Sns");
+        SnsStack snsStack = new SnsStack(app, "Sns");
 
-        AwsService01Stack awsService01Stack = new AwsService01Stack(
+        Service01Stack service01Stack = new Service01Stack(
                 app,
                 "Service01",
-                awsClusterStack.getCluster(),
-                awsSnsStack.getProductEventsTopic()
+                clusterStack.getCluster(),
+                snsStack.getProductEventsTopic()
         );
-        awsService01Stack.addDependency(awsClusterStack);
-        awsService01Stack.addDependency(awsRdsStack);
-        awsService01Stack.addDependency(awsSnsStack);
+        service01Stack.addDependency(clusterStack);
+        service01Stack.addDependency(rdsStack);
+        service01Stack.addDependency(snsStack);
 
-        AwsService02Stack awsService02Stack = new AwsService02Stack(
+        Service02Stack service02Stack = new Service02Stack(
                 app,
                 "Service02",
-                awsClusterStack.getCluster(),
-                awsSnsStack.getProductEventsTopic()
+                clusterStack.getCluster(),
+                snsStack.getProductEventsTopic()
         );
-        awsService02Stack.addDependency(awsSnsStack);
+        service02Stack.addDependency(snsStack);
 
         app.synth();
     }

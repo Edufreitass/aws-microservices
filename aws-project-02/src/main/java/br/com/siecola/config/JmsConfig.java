@@ -15,7 +15,7 @@ import javax.jms.Session;
 
 @Configuration
 @EnableJms
-public class AwsJmsConfig {
+public class JmsConfig {
 
     @Value("${aws.region}")
     private String awsRegion;

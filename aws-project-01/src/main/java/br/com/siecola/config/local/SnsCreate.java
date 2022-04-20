@@ -15,14 +15,14 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @Profile("local")
-public class AwsSnsCreate {
+public class SnsCreate {
 
-    private static final Logger LOG = LoggerFactory.getLogger(AwsSnsCreate.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SnsCreate.class);
 
     private final String productEventsTopic;
     private final AmazonSNS snsClient;
 
-    public AwsSnsCreate() {
+    public SnsCreate() {
         this.snsClient = AmazonSNSClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:4566", Regions.US_EAST_1.getName()))
                 .withCredentials(new DefaultAWSCredentialsProviderChain())

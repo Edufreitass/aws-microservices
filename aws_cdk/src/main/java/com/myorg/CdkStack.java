@@ -6,12 +6,12 @@ import software.amazon.awscdk.StackProps;
 // import software.amazon.awscdk.Duration;
 // import software.amazon.awscdk.services.sqs.Queue;
 
-public class AwsCdkStack extends Stack {
-    public AwsCdkStack(final Construct scope, final String id) {
+public class CdkStack extends Stack {
+    public CdkStack(final Construct scope, final String id) {
         this(scope, id, null);
     }
 
-    public AwsCdkStack(final Construct scope, final String id, final StackProps props) {
+    public CdkStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
 
         // The code that defines your stack goes here

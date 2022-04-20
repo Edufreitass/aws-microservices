@@ -13,13 +13,13 @@ import software.constructs.Construct;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AwsService01Stack extends Stack {
+public class Service01Stack extends Stack {
 
-    public AwsService01Stack(final Construct scope, final String id, Cluster cluster, SnsTopic productEventsTopic) {
+    public Service01Stack(final Construct scope, final String id, Cluster cluster, SnsTopic productEventsTopic) {
         this(scope, id, null, cluster, productEventsTopic);
     }
 
-    public AwsService01Stack(final Construct scope, final String id, final StackProps props, Cluster cluster, SnsTopic productEventsTopic) {
+    public Service01Stack(final Construct scope, final String id, final StackProps props, Cluster cluster, SnsTopic productEventsTopic) {
         super(scope, id, props);
 
         Map<String, String> envVariables = new HashMap<>();

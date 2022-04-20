@@ -7,13 +7,13 @@ import software.constructs.Construct;
 
 import java.util.Collections;
 
-public class AwsRdsStack extends Stack {
+public class RdsStack extends Stack {
 
-    public AwsRdsStack(final Construct scope, final String id, Vpc vpc) {
+    public RdsStack(final Construct scope, final String id, Vpc vpc) {
         this(scope, id, null, vpc);
     }
 
-    public AwsRdsStack(final Construct scope, final String id, final StackProps props, Vpc vpc) {
+    public RdsStack(final Construct scope, final String id, final StackProps props, Vpc vpc) {
         super(scope, id, props);
 
         CfnParameter databasePassword = CfnParameter.Builder.create(this, "databasePassword")

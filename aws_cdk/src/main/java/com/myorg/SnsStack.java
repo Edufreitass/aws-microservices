@@ -7,15 +7,15 @@ import software.amazon.awscdk.services.sns.Topic;
 import software.amazon.awscdk.services.sns.subscriptions.EmailSubscription;
 import software.constructs.Construct;
 
-public class AwsSnsStack extends Stack {
+public class SnsStack extends Stack {
 
     private final SnsTopic productEventsTopic;
 
-    public AwsSnsStack(final Construct scope, final String id) {
+    public SnsStack(final Construct scope, final String id) {
         this(scope, id, null);
     }
 
-    public AwsSnsStack(final Construct scope, final String id, final StackProps props) {
+    public SnsStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
 
         productEventsTopic = SnsTopic.Builder.create(Topic.Builder.create(this, "ProductEventsTopic")
